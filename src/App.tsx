@@ -1,5 +1,5 @@
 import './App.css'
-import { Login } from './pages/Login/Login';
+import { Login } from './auth/Login/Login';
 import { Main } from './pages/Main/Main';
 
 
