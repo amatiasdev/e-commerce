@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { AuthLayout } from "../layout/AuthLayout";
 
-export const Login = ({ message }: any): JSX.Element => 
+export const Login = ({ message, setUser }: any): JSX.Element => 
     <div>
-        <AuthLayout />
+        <AuthLayout setUser={setUser} />
     </div>;
