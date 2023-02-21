@@ -3,16 +3,38 @@ import { Button, Form, Input } from "antd";
 import cart from "../../assets/cart-logo.svg";
 import { useNavigate } from "react-router-dom";
 
-export const AuthLayout = ({ message, setUser }: any): JSX.Element => {
+import type { RootState } from "../../redux/store/store";
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser } from "../../redux/features/user/UserSlice";
+
+export const  AuthLayout = ({ message, setUser }: any): JSX.Element => {
+
+  const user = useSelector((state: RootState) => state.user)
+  const dispatch = useDispatch()
+
   const navigate = useNavigate();
   const onFinish = (values: any) => {
-    if(values.username==='1' && values.password==='1'){
+
+    if(values.username && values.password ){
       const userCurrent = {
         email: values.username,
         token: "adjshdia7ey12ikejmashi8yawuhkdjsm"
       }
       setUser(userCurrent);
-      navigate('main');
+      /* 
+      fetch('https://fakestoreapi.com/auth/login',{
+            method:'POST',
+            body:JSON.stringify({
+                username: "johnd",
+                password: "m38rmF$"
+            })
+        })
+        .then(res=>res.json())
+        .then(json=>{
+        })
+       */
+        dispatch(loginUser(userCurrent));
+        navigate('main');
     }
   };
 
