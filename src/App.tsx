@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
 import { Login } from './auth/Login/Login';
@@ -10,12 +10,16 @@ interface userCurrent{
 }
 
 function App() {
-
+  
   const [user, setUser] = useState<userCurrent>({
-    email:"",
-    token:""
+    email: "",
+    token: ""
   });
 
+  useEffect(() => {
+    console.log(user?.token);
+  }, [user])
+  
   return (
     <div className="App">
       <BrowserRouter>

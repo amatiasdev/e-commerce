@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 import type { RootState } from "../../redux/store/store";
 import { useSelector, useDispatch } from 'react-redux'
-import { loginUser } from "../../redux/features/user/userSlice";
+import { useEffect } from "react";
 
-export const  AuthLayout = ({ message, setUser }: any): JSX.Element => {
+export const  AuthLayout = (): JSX.Element => {
 
   const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
@@ -16,31 +16,23 @@ export const  AuthLayout = ({ message, setUser }: any): JSX.Element => {
   const onFinish = (values: any) => {
 
     if(values.username && values.password ){
-      const userCurrent = {
-        email: values.username,
-        token: "adjshdia7ey12ikejmashi8yawuhkdjsm"
-      }
-      setUser(userCurrent);
-      /* 
-      fetch('https://fakestoreapi.com/auth/login',{
-            method:'POST',
-            body:JSON.stringify({
-                username: "johnd",
-                password: "m38rmF$"
-            })
-        })
-        .then(res=>res.json())
-        .then(json=>{
-        })
-       */
-        dispatch(loginUser(userCurrent));
-        navigate('main');
+      window.localStorage.setItem('email', values.username);
+      window.localStorage.setItem('token', 'adjshdia7ey12ikejmashi8yawuhkdjsm');
+      navigate('main');
     }
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    if(token){
+      navigate('main');
+    }
+  }, [])
+  
 
   return <div className="layout-container">
           <div className="logo-wrapper">
@@ -60,7 +52,6 @@ export const  AuthLayout = ({ message, setUser }: any): JSX.Element => {
               >
                 <span className="input-label">Usuario:</span>
                 <Form.Item
-                  // label="Username"
                   name="username"
                   rules={[{ required: true, message: "Ingresa tu nombre o correo" }]}
                 >
@@ -68,7 +59,6 @@ export const  AuthLayout = ({ message, setUser }: any): JSX.Element => {
                 </Form.Item>
                 <span className="input-label">Password:</span>
                 <Form.Item
-                  // label="Password"
                   name="password"
                   rules={[{ required: true, message: "Ingresa tu contraseña" }]}
                 >
