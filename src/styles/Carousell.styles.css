@@ -1,0 +1,24 @@
+.banner-container{
+    position: absolute;
+    top: 90px;
+    right: 0;
+    left: 0;
+    margin: 0;
+    min-width: 100vw;
+    height: 400px;
+}
+
+/* .banner-one{
+    width: 100%;
+    height: 500px;
+    background-image: url(../assets/banner_b.png);
+    background-repeat: no-repeat;
+    background-size:auto;
+} */
+.banner-two{
+    width: 100%;
+    height: 400px;
+    background-image: url(../assets/banner_p.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import type { RootState } from "../../redux/store/store";
 import { useSelector, useDispatch } from 'react-redux'
-import { loginUser } from "../../redux/features/user/UserSlice";
+import { loginUser } from "../../redux/features/user/userSlice";
 
 export const  AuthLayout = ({ message, setUser }: any): JSX.Element => {
 
