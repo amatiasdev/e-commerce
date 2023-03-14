@@ -4,33 +4,21 @@ import './App.css'
 import { Login } from './auth/Login/Login';
 import { Main } from './pages/Main/Main';
 import PrivateRoute from './routes/PrivateRoute';
-interface userCurrent{
-  email: string,
-  token: string,
-}
+
 
 function App() {
-  
-  const [user, setUser] = useState<userCurrent>({
-    email: "",
-    token: ""
-  });
-
-  useEffect(() => {
-    console.log(user?.token);
-  }, [user])
   
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route element={<Login setUser={setUser}/>} path="/login" />
+          <Route element={<Login/>} path="/login" />
           <Route element={
-            <PrivateRoute isLogged={user?.token}>
+            <PrivateRoute>
               <Main/>
             </PrivateRoute>
           } path="/main" />
-          <Route element={<Login setUser={setUser}/>} path="*" />
+          <Route element={<Login/>} path="*" />
         </Routes>
       </BrowserRouter>
     </div>

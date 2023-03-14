@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import type { RootState } from "../../redux/store/store";
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const  AuthLayout = (): JSX.Element => {
 
@@ -25,13 +25,13 @@ export const  AuthLayout = (): JSX.Element => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+  const [token] = useState(window.localStorage.getItem('token'));
 
   useEffect(() => {
-    const token = window.localStorage.getItem('token');
     if(token){
       navigate('main');
     }
-  }, [])
+  }, []);
   
 
   return <div className="layout-container">
